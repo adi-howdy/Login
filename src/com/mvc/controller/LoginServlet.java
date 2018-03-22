@@ -3,6 +3,8 @@ package com.mvc.controller;
 import java.io.IOException;
 import com.mvc.bean.LoginBean;
 import com.mvc.dao.LoginDao;
+import com.mvc.util.Hashing;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,12 +42,14 @@ public class LoginServlet extends HttpServlet {
 		//Here username and password are the names which I have given in the input box in Login.jsp page. Here I am retrieving the values entered by the user and keeping in instance variables for further use.
 	
 		String userName = request.getParameter("username");
-		 String password = request.getParameter("password");
+		 String password1 = request.getParameter("password");
 		 
+		 Hashing hash_password = new Hashing();
 		 LoginBean loginBean = new LoginBean(); 
 		 
+		 String hashed = hash_password.generateHash(password1);
 		 loginBean.setUserName(userName); //setting the username and password through the loginBean object then only you can get it in future.
-		 loginBean.setPassword(password);
+		 loginBean.setPassword(hashed);
 		 LoginDao loginDao = new LoginDao(); //creating object for LoginDao. This class contains main logic of the application.
 		 String userValidate = loginDao.authenticateUser(loginBean); //Calling authenticateUser function
 		 if(userValidate.equals("User")) //If function returns success string then user will be rooted to Home page
