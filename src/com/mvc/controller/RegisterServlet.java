@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mvc.bean.LoginBean;
 import com.mvc.dao.RegisterDAO;
 import com.mvc.util.DBConnection;
+import com.mvc.util.Hashing;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -48,12 +49,17 @@ public class RegisterServlet extends HttpServlet {
 		String email1 = request.getParameter("email");
 		String role1 = request.getParameter("role");
 		
+		Hashing hash_password = new Hashing();
 		LoginBean bean = new LoginBean();
+		
+		String hashed = hash_password.generateHash(password1);
 		bean.setName(name1);
 		bean.setUserName(userName1);
-		bean.setPassword(password1);
+		bean.setPassword(hashed);
 		bean.setEmail(email1);
 		bean.setRole(role1);
+		
+		
 		
 		RegisterDAO register1 = new RegisterDAO();
 		String userRegister = register1.register(bean);
