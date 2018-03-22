@@ -1,5 +1,5 @@
 @CHARSET "ISO-8859-1";
-
+//form or register 
 form * {
 	background: none;
 }
@@ -71,7 +71,7 @@ button {
 	display: block;
 	float: left;
 	clear: both;
-	background: #FFD462;
+	background: #7A1631;
 	padding: 6px 28px;
 	border: none;
 
@@ -87,7 +87,7 @@ a {font-size: 13px;
 	display: block;
 	float: Right;
 	clear: both;
-	background: #FFD462;
+	background: #7A1631;
 	padding: 6px 28px;
 	border: none;
 

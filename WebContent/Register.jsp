@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration</title>
-<link rel="stylesheet" href="css/normalize.css" />
+<!--  link rel="stylesheet" href="css/normalize.css" /> -->
 <link rel="stylesheet"	href="css/mystyle.css" />
 <script>
 function validate()

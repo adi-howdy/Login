@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
-<link rel="stylesheet" href="css/normalize.css" />
+<!-- <link rel="stylesheet" href="css/normalize.css" /> -->
 <link rel="stylesheet"	href="css/mystyle.css" />
 <script> 
 function validate()
@@ -46,7 +46,7 @@ function validate()
  </tr>
 </table>
 <input type="submit" value="Login"></input>
-<a href="Register.jsp">Register</a>
+<a class ="register" href="Register.jsp">Register</a>
 </form>
  
 </body>

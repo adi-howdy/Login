@@ -7,7 +7,9 @@
 <title>Day-off/Vacation Application</title>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  <link rel="stylesheet" href="/resources/demos/style.css">
+
  <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<!--   <link rel="stylesheet" href="css/normalize.css" /> -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script>
@@ -19,6 +21,34 @@
  $( function() {
    $( "#datepicker1" ).datepicker();
  } );
+</script>
+<script>
+function validate()
+{
+	var reason1 = document.form.reason.value;
+	var from1 = document.form.from.value;
+	var to1 = document.form.to.value;
+	if(reason1 == "Choose..")
+	{
+	alert("Choose correct reason");
+	return false;
+	}
+	else if(from1 == null || from1 == "")
+	{
+	alert("Choose Correct date");
+	return false;
+	}
+	else if(to1 == null || to1 == "")
+	{
+	alert("Choose Correct date");
+	return false;
+	}
+	else if(from1 > to1)
+	{
+	alert("Choose Correct date");
+	return false;
+	}
+}
 </script>
 </head>
 <body>
@@ -44,15 +74,16 @@
  </ul>
 <div style="text-align:center"><h1> Day-off/Vacation Application </h1> </div>
 <br>
-<form name="form" action="DayoffServlet" method="post">
-<table align="center" style= "background-color: skyblue" >
+<form name="form" action="DayoffServlet" method="post" onsubmit="return validate()">
+<table align="center" style= "background-color: #7A1631" >
 <tr>
  <td>Reason:</td>
  <td>
  <select name="reason">
- 	<option>Vacation</option>
- 	<option>Sick Leave</option>
- 	<option>Other</option>
+ 	<option>Choose..</option>
+ 	<option value ="Vacation">Vacation</option>
+ 	<option value = "Sick Leave">Sick Leave</option>
+ 	<option value = "Other">Other</option>
  </select>
  </td>
  </tr>
@@ -62,10 +93,6 @@
  <tr>
  <td>To: <input type="text" id="datepicker1" name="to"></td>
  </tr>
- <tr>
-				<td>Name:</td>
-				<td><input type="text" name="name"></td>
-			</tr>
  <tr>
  	<td><input type="submit" name="submit" value="Apply" ></td>
  </tr>
