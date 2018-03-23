@@ -37,5 +37,29 @@ public class Validation {
 		
 		return status;
 	}
+	
+	public String validatePassword(String uname, String pass)
+	{
+		String status = "bad";
+		con = DBConnection.createConnection();
+		try{
+			String sql = "select * from users where userName = ?";
+			PreparedStatement pr = con.prepareStatement(sql);
+			pr.setString(1, uname);
+			result = pr.executeQuery();
+			while(result.next())
+			{
+				if(result.getString("password").equals(pass))
+				{
+					status = "good";
+				}
+			}
+		}
+		catch (SQLException e)
+		{
+			System.out.print(e);
+		}
+		return status;
+	}
 
 }

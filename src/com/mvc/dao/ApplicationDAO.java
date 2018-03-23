@@ -10,12 +10,13 @@ import com.mvc.bean.LoginBean;
 import com.mvc.util.DBConnection;
 
 public class ApplicationDAO {
+	LoginBean user_name = null;
+	Connection con = null;
+	ResultSet result = null;
 	
 	public LoginBean getProfile(String user)
 	{
-		LoginBean user_name = null;
-		Connection con = null;
-		ResultSet result = null;
+		
 		//System.out.println("From application dao" + user);
 		try{
 		con = DBConnection.createConnection();
@@ -46,5 +47,24 @@ public class ApplicationDAO {
 		return user_name;
 		
 	}
+	
+	public String updatePassword(String user, String pass)
+	{
+		String status = null;
+		con = DBConnection.createConnection();
+		try{
+		String sql = "update users set password = ? where userName = ?";
+		PreparedStatement pr = con.prepareStatement(sql);
+		pr.setString(1, pass);
+		pr.setString(2, user);
+		pr.executeUpdate();
+		status = "Success";
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e);
+		}
+		return status;
+		}
 
 }

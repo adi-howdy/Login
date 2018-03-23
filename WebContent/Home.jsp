@@ -11,7 +11,12 @@
 <%=session.getAttribute("userName") %>
  <ul>
  <li><a href="Home.jsp">Home</a></li>
- <li><a href="InfoServlet">Profile</a></li>
+ <li><a href="#">Profile</a>
+ <ul>
+ 	<li><a href="InfoServlet">View Profile</a></li>
+ 	<li><a href="Change_password.jsp">Change Password</a></li>
+ </ul>
+ </li>
  <li><a href="Dayoff.jsp">Dayoff Application</a></li>
  <li><a href="#">Notification</a>
  <ul>
