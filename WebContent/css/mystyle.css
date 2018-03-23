@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 //form or register 
 form * {
-	background: none;
+	background: url(../image/background_wood.jpg);
 }
 
 input[type=text], input[type=password], input[type=submit],textarea, button {
@@ -87,7 +87,7 @@ a {font-size: 13px;
 	display: block;
 	float: Right;
 	clear: both;
-	background: #7A1631;
+	background: #ffff00;
 	padding: 6px 28px;
 	border: none;
 

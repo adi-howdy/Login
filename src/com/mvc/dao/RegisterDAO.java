@@ -7,11 +7,13 @@ import java.sql.SQLException;
 
 import com.mvc.bean.LoginBean;
 import com.mvc.util.DBConnection;
+import com.mvc.util.Validation;
 
 public class RegisterDAO {
 
 	Connection con = null;
 	PreparedStatement result = null;
+	ResultSet result1 = null;
 	
 	public String register(LoginBean user)
 	{
@@ -21,8 +23,18 @@ public class RegisterDAO {
 		String email2 = user.getEmail();
 		String role2 = user.getRole();
 		String status = null;
+		Validation val = new Validation();
 		try{
 			con = DBConnection.createConnection();
+			
+			String user_status = val.userNameValidation(userName2);
+			
+			if(user_status.equals("User exists"))
+			{
+				status = "User exists";
+				
+			}
+			else if(user_status.equals("good")){
 			result = con.prepareStatement("insert into users values(?,?,?,?,?)");
 			result.setString(1, name2);
 			result.setString(2, userName2);
@@ -32,7 +44,7 @@ public class RegisterDAO {
 			result.executeUpdate();
 			con.close();
 			status = "Success";
-		
+			}
 		}
 		catch (SQLException e)
 		{
