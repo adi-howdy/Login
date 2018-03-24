@@ -66,5 +66,24 @@ public class ApplicationDAO {
 		}
 		return status;
 		}
-
+	
+	public String uploadPhoto(String user, String path)
+	{
+		String status = "bad";
+		con = DBConnection.createConnection();
+		
+		try{
+			String sql = "insert into upload_photo values(?,?)";
+			PreparedStatement pr = con.prepareStatement(sql);
+			pr.setString(1, user);
+			pr.setString(2, path);
+			pr.executeUpdate();
+			status = "good";
+		}
+		catch (SQLException e)
+		{
+			System.out.print(e);
+		}
+		return status;
+	}
 }

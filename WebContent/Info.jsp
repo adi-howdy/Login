@@ -25,5 +25,19 @@
 	<td>${user123.role}</td>
 	</tr>
 	</table>
+	<form action="FileUploadServlet" method="post" enctype="multipart/form-data">
+	<table>
+	<tr>
+	<td>Image Link:</td>
+	<td><input type="file" name="file"></td>
+	</tr>
+	<tr>
+	<td>
+	</td>
+	<td><input type="submit" value="submit"></td>
+	</tr>
+	</table>
+	
+	</form>
 </body>
 </html>
