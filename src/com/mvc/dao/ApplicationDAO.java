@@ -86,4 +86,32 @@ public class ApplicationDAO {
 		}
 		return status;
 	}
+	
+	public LoginBean getPhoto(String user)
+	{
+		//String status = "bad";
+		//con = DBConnection.createConnection();
+		
+		try{
+			con = DBConnection.createConnection();
+			
+			String sql = "select * from upload_photo where userName = ?";
+			PreparedStatement pr = con.prepareStatement(sql);
+			pr.setString(1, user);
+			result = pr.executeQuery();
+			//result = statement.executeQuery("select * from users where userName = ' " + user + "';");
+			while(result.next())
+			{
+				user_name = new LoginBean();
+				user_name.setUserName(result.getString("userName"));
+				user_name.setPath(result.getString("path"));
+			}
+	}
+		catch (SQLException e)
+		{
+			System.out.print(e);
+		}
+		return user_name;
+	}
+		
 }

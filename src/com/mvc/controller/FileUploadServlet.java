@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.mvc.bean.LoginBean;
 import com.mvc.dao.ApplicationDAO;
 
 /**
@@ -41,6 +42,8 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
 	}
 
 	/**
@@ -50,7 +53,7 @@ public class FileUploadServlet extends HttpServlet {
 	
         
 		Part part = request.getPart("file");
-		System.out.print("filenam eis " +  request.getPart("file"));
+		System.out.print("filenam is " +  request.getPart("file"));
 		String fileName = extractFileName(part);
 		
 		String applicationPath = request.getServletContext().getRealPath("");
@@ -94,10 +97,18 @@ public class FileUploadServlet extends HttpServlet {
         ApplicationDAO dao = new ApplicationDAO();
         String status = dao.uploadPhoto(userName1, savePath);
         
+        LoginBean photo = dao.getPhoto(userName1);
+        System.out.print("photo path" + photo.getPath());
+        
+        //request.setAttribute("photo", photo);
+        //request.getRequestDispatcher("Info.jsp").forward(request, response);
+        
         if(status.equals("good"))
         {
         	request.setAttribute("message", "Photo has been successfully uploaded");
 			request.getRequestDispatcher("Home.jsp").forward(request, response);
+        	//request.setAttribute("photo", photo);
+            //request.getRequestDispatcher("Info.jsp").forward(request, response);
         }
         else
         {

@@ -7,7 +7,14 @@ public class LoginBean {
 	 private String name;
 	 private String email;
 	 private String role;
+	 private String path;
 	 
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	public String getRole() {
 		return role;
 	}
